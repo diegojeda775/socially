@@ -5,12 +5,11 @@ import { Button } from './ui/button'
 import Link from 'next/link'
 import DesktopNavBar from './DesktopNavBar'
 import MobileNavBar from './MobileNavBar'
+import { onUserLogin } from '@/app/actions/user.action'
 
 function NavBar() {
+  const signedUser = onUserLogin();
   return (
-    // <div>
-    //   
-    // </div>
     <nav className="sticky top-0 w-full borde-b bg-background/95 backdrop-blur 
       supports-[backdrop-filter] :bg-background/60 z-50" 
     >
