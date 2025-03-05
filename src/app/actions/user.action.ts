@@ -33,6 +33,7 @@ export async function onUserLogin() {
 }
 
 export async function userLookUpByExtId(extId: string) {
+  if (!extId) return;
   return await prisma.user.findFirst({
     where: { externalId: extId },
     include: {
