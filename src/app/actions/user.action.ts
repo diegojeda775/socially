@@ -4,17 +4,16 @@ import { prisma } from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server"
 
 export async function onUserLogin() {
+ try {
   const { userId } = await auth();
   const extUser = await currentUser();
-
   if(!extUser || !userId) return;
 
-  const foundUser = prisma.user.findUnique({
+  const foundUser = await prisma.user.findUnique({
     where: {
       externalId: userId,
     }
   })
-
   if(foundUser) return foundUser;
 
   const dbUser = await prisma.user.create({
@@ -28,10 +27,22 @@ export async function onUserLogin() {
   });
 
   return dbUser;
+ } catch (error) {
+  console.log('Error', error)
+ }
 }
 
-export async function userLookUpById(id: string) {
+export async function userLookUpByExtId(extId: string) {
   return await prisma.user.findFirst({
-    where: { id },
+    where: { externalId: extId },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+          following: true,
+          posts: true,
+        }
+      }
+    }
   })
-}
+};
