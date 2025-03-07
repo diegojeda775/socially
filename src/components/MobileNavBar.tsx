@@ -30,7 +30,7 @@ function MobileNavBar() {
           </Button>
         </SheetTrigger>
         
-        <SheetContent side="right" className="w-[300px]">
+        <SheetContent side="right" className="w-[300px]" aria-describedby={undefined}>
         <SheetHeader>
             <SheetTitle>Menu</SheetTitle>
         </SheetHeader>

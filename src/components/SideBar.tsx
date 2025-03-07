@@ -21,7 +21,7 @@ import { LinkIcon, MapPinIcon } from "lucide-react";
 async function SideBar() {
   const authUser = await currentUser();
   if(!authUser) return <UnAuthUser />;
-  const user = await userLookUpByExtId(authUser.id);
+  const { user }: any = await userLookUpByExtId();
   if(!user) return null;
 
   return (

@@ -32,9 +32,10 @@ export async function onUserLogin() {
  }
 }
 
-export async function userLookUpByExtId(extId: string) {
-  if (!extId) return;
-  return await prisma.user.findFirst({
+export async function userLookUpByExtId() {
+  const { userId: extId } = await auth();
+  if (!extId) return { user: null, userId: null };
+  const user = await prisma.user.findFirst({
     where: { externalId: extId },
     include: {
       _count: {
@@ -45,5 +46,50 @@ export async function userLookUpByExtId(extId: string) {
         }
       }
     }
-  })
+  });
+  if(!user) throw new Error("No user found")
+  return { user, userId: user?.id }
 };
+
+export async function getRandomUser() {
+  const {userId} = await userLookUpByExtId();
+  if (!userId) return;
+  try {
+    const randomUsers = prisma.user.findMany({
+      where: {
+        AND: [
+          {NOT: 
+            { id: userId }
+          },
+          {NOT: 
+            {
+              followers: {
+                some: {
+                  followerId: userId,
+                },
+              },
+            },
+          }
+        ]
+      },
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        image: true,
+        _count: {
+          select: {
+            followers: true
+          }
+        }
+      },
+      take: 3,
+    })
+
+    return randomUsers;
+  } catch (error) {
+    console.log("Randome Users", error)
+    return []
+  }
+  
+}
