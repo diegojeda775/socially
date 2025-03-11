@@ -45,7 +45,7 @@ function CreatePost(props: { user: any; }) {
         <div className="space-y-4">
           <div className="flex space-x-4">
             <Avatar className="w-10 h-10">
-              <AvatarImage src={user?.imageUrl || "/avatar.png"}/>
+              <AvatarImage src={user?.image || "/avatar.png"}/>
             </Avatar>
             <Textarea 
               className="min-h-[100px] resize-none border-none focuse-visible:ring-0 p-0 text-base"
