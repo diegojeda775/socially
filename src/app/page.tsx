@@ -7,7 +7,7 @@ import { getPosts } from "./actions/post.action";
 
 
 export default async function Home() {
-  const { user }: any = await userLookUpByExtId() || null;
+  const { user, userId }: any = await userLookUpByExtId() || null;
   const posts = await getPosts();
   return (
     <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
@@ -15,7 +15,7 @@ export default async function Home() {
         {user && <CreatePost user={user}/>}
         <div className="space-y-6">
           {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
+            <PostCard key={post.id} post={post} dbUserId={userId} user={user}/>
           ))}
         </div>
       </div>
