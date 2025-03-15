@@ -29,7 +29,7 @@ async function SideBar() {
       <Card>
         <CardContent className="pt-6">
           <div className="flex flex-col items-center text-center">
-            <Link href={`profile/${user.username ?? user.email.split("@")[0]}`}
+            <Link href={`/profile/${user.username ?? user.email.split("@")[0]}`}
               className="flex flex-col items-center justify-center"
             >
               <Avatar className="h-20 w-20 border-2">

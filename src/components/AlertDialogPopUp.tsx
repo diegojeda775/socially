@@ -11,8 +11,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "./ui/button";
-import { Loader2Icon, LucideProps, Trash2Icon, Component } from "lucide-react";
-import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
+import { Loader2Icon, LucideProps, Component } from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 interface AlertDialogProps {
   onClickFn: () => Promise<void>;
