@@ -12,7 +12,7 @@ export async function generateMetadata({params}: {params: {username: string}}) {
   }
 }
 
-async function ProfilePage({params}: {params: {username: string}}) {
+async function ProfilePageServer({params}: {params: {username: string}}) {
   const user = await getUserByUsername(params.username);
   if(!user) notFound();
 
@@ -24,8 +24,8 @@ async function ProfilePage({params}: {params: {username: string}}) {
 
 
   return (
-   <ProfilePageClient posts={posts} likedPosts={likedPosts} isFollowing={isCurrentUserFollowing} />
+   <ProfilePageClient posts={posts} likedPosts={likedPosts} isFollowing={isCurrentUserFollowing} user={user}/>
   )
 }
 
-export default ProfilePage
+export default ProfilePageServer
