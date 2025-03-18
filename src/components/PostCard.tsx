@@ -1,7 +1,6 @@
 "use client"
 
 import { createComment, deletePost, getPosts, toggleLike } from "@/app/actions/post.action";
-import { User } from "@prisma/client";
 import { useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { Card, CardContent } from "./ui/card";
@@ -13,6 +12,7 @@ import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon, Trash2Icon } from "l
 import { Button } from "./ui/button";
 import { SignInButton } from "@clerk/nextjs";
 import { Textarea } from "./ui/textarea";
+import { User } from "@/app/actions/user.action";
 
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];

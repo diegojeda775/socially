@@ -33,6 +33,9 @@ export async function onUserLogin() {
  }
 }
 
+export type UserObj = Awaited<ReturnType<typeof userLookUpByExtId>>
+export type User = UserObj["user"]
+
 export async function userLookUpByExtId() {
   const { userId: extId } = await auth();
   if (!extId) return { user: null, userId: null };
@@ -49,7 +52,7 @@ export async function userLookUpByExtId() {
     }
   });
   if(!user) throw new Error("No user found")
-  return { user, userId: user?.id }
+  return { user, userId: user.id }
 };
 
 export async function getRandomUser() {

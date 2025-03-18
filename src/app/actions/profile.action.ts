@@ -14,7 +14,7 @@ export async function getUserByUsername(username: string) {
           select: {
             followers: true,
             following: true,
-            likes: true,
+            posts: true,
           }
         },
       }
