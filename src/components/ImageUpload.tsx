@@ -34,7 +34,7 @@ function ImageUpload(props: ImageUploadProps) {
       onClientUploadComplete={(res) => {
         onChange(res?.[0].ufsUrl)
       }}
-      onUploadError={error => console.log("error upload image", error)}
+      onUploadError={(error: Error )=> console.log("error upload image", error)}
     />
   )
 }
