@@ -11,7 +11,7 @@ async function getPostWithAuthorId(postId: string) {
   })
 }
 
-export async function createPost (data: {content?: string, imageUrl?: string, authorId: string}) {
+export async function createPost (data: {content?: string, image?: string, authorId: string}) {
     if (!data || !data.authorId) return;
     try {
       const post = await prisma.post.create({

@@ -22,7 +22,7 @@ function CreatePost(props: { user: any; }) {
     try {
       const response = await createPost({
           content,
-          imageUrl,
+          image: imageUrl,
           authorId: user.id
         }, 
       )
